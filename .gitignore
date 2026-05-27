@@ -1,0 +1,6 @@
+.lake/
+RequestDebug.log
+TempProof.lean
+node_modules/
+.DS_Store
+*.swp

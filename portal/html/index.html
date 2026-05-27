@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSc Mathematics: Lean 4 Course Portal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Link External Stylesheet -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside>
+        <div class="logo-section">
+            <div class="logo-icon">L</div>
+            <div class="logo-text">Lean 4 Course</div>
+        </div>
+        <ul class="nav-links">
+            <li><a class="nav-item active" onclick="showPage('overview')">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                Course Overview
+            </a></li>
+            <li><a class="nav-item" onclick="showPage('week0')">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                Week 0: IDE & Testing
+            </a></li>
+            <li><a class="nav-item" onclick="showPage('week1')">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Week 1: Formal Systems
+            </a></li>
+            <li><a class="nav-item" onclick="showPage('simulator')">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                IDE Live Simulator
+            </a></li>
+            <li><a class="nav-item" onclick="showPage('tactics')">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Interactive Tactic Guide
+            </a></li>
+        </ul>
+        
+        <!-- Settings Area -->
+        <div class="settings-section">
+            <button class="settings-btn" id="settingsBtn" onclick="toggleSettings(event)">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                Settings
+            </button>
+            <div class="settings-popover" id="settingsPopover" onclick="event.stopPropagation()">
+                <div class="settings-popover-title">App Settings</div>
+                
+                <!-- Theme Control -->
+                <div class="setting-item">
+                    <label class="setting-label">Theme</label>
+                    <select class="setting-select" id="themeSelect" onchange="changeTheme(this.value)">
+                        <option value="midnight">Midnight Blue</option>
+                        <option value="slate">Slate Gray</option>
+                        <option value="cyberpunk">Cyberpunk Neon</option>
+                        <option value="light">Classic Light</option>
+                    </select>
+                </div>
+                
+                <!-- Zoom Range Control -->
+                <div class="setting-item">
+                    <div class="setting-zoom-header">
+                        <label class="setting-label">Zoom Level</label>
+                        <span class="zoom-value-display" id="zoomValue">100.0%</span>
+                    </div>
+                    <div class="zoom-range-wrapper">
+                        <input type="range" class="setting-range" id="zoomRange" min="70" max="150" step="0.5" value="100" oninput="changeZoom(this.value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Page 1: Overview -->
+        <div id="overview" class="page active">
+            <header>
+                <h1>BSc Mathematics: Lean 4 Course</h1>
+                <div class="subtitle">Welcome to the future of mathematical proof verification</div>
+            </header>
+
+            <div class="alert alert-info">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div>
+                    <strong>Welcome Professor!</strong> This dashboard acts as an interactive companion guide for your students. Navigating the sidebar will let them complete their Week 0 (IDE environment testing) and Week 1 studies, explore tactics, and practice in a simulated web-IDE.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h0a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                    Why Learn Formal Verification?
+                </div>
+                <p>For centuries, mathematical proofs were verified by peer review—a slow and sometimes error-prone human process. Lean 4 changes this. As an interactive theorem prover, it lets you write proofs in collaboration with a computer compiler that type-checks your logic line-by-line, showing you the exact logical state of your theorem in real time.</p>
+                <p>In this course, you will learn how to turn abstract mathematical statements in algebra, number theory, and analysis into formal code that is mathematically guaranteed to be 100% correct.</p>
+            </div>
+        </div>
+
+        <!-- Page 2: Week 0 -->
+        <div id="week0" class="page">
+            <header>
+                <h1>Week 0: IDE & Local Environment Setup</h1>
+                <div class="subtitle">Conquering the installation process and testing your system</div>
+            </header>
+
+            <div class="card">
+                <div class="card-title">Installation Guide for Non-Programmers</div>
+                <p>For mathematical students who have never opened a terminal, installing code tools can feel intimidating. Follow this step-by-step pipeline to get up and running smoothly.</p>
+                
+                <div class="timeline">
+                    <div class="timeline-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Install VS Code</div>
+                            <p>Download and install **Visual Studio Code** (VS Code). This is the text editor where we will write all of our mathematical proofs. It has a beautiful, real-time proof-checking panel.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Install Lean 4 and Elan</div>
+                            <p>Lean is managed by a tool manager called `elan` (similar to standard system package managers). Run the automated installation script:</p>
+                            <p><strong>Windows (PowerShell)</strong>:</p>
+                            <pre>curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh</pre>
+                            <p><strong>Mac / Linux (Terminal)</strong>:</p>
+                            <pre>curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh</pre>
+                            <p>Select the default installation options when prompted, then restart your terminal.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Install VS Code Extension</div>
+                            <p>Open VS Code, click on the "Extensions" tab on the left sidebar (looks like four blocks), search for **Lean 4**, and click **Install**. This connects the editor to your compiler.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">Verification Test</div>
+                            <p>To verify that everything is installed correctly, open a terminal window and run:</p>
+                            <pre>lean --version</pre>
+                            <p>If it outputs a string like <code>leanprover/lean4:v4.x.x</code>, your installation is successful!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🎥 Week 0 Video Tutorial Script</div>
+                <div class="script-section">
+                    <div class="script-speaker">Host (Professor)</div>
+                    <p>"Hello everyone, and welcome! Today, we are starting our journey into formalized mathematics. If you've never coded before—don't worry. This week is all about setting up our virtual blackboard. We will install Visual Studio Code, run the Lean installer, and run our very first verification check. Together, we'll make sure your computer is ready to start proving theorems next week!"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: Week 1 -->
+        <div id="week1" class="page">
+            <header>
+                <h1>Week 1: Introduction to Formal Systems</h1>
+                <div class="subtitle">Peano Arithmetic, induction, and your first theorem proof</div>
+            </header>
+
+            <div class="card">
+                <div class="card-title">What is a Formal System?</div>
+                <p>A formal system is a language of symbols, rules for combining them into statements (axioms), and rules for deducing new statements (theorems). In Lean, the fundamental formal system is **Calculus of Inductive Constructions**.</p>
+                <p>For example, how do we define the Natural Numbers ($\mathbb{N} = \{0, 1, 2, 3, \dots\}$)? We define them as an **Inductive Type**:</p>
+                <pre><span class="sim-keyword">inductive</span> <span class="sim-type">Nat</span> where
+  | zero : Nat
+  | succ : Nat &rarr; Nat</pre>
+                <p>This simple definition says: 
+                   1. `zero` is a natural number ($0$).
+                   2. If `n` is a natural number, then `succ n` (the successor of `n`, or $n+1$) is also a natural number.
+                   All arithmetic and equations are built recursively on top of this Peano definition!</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🎥 Week 1 Video Tutorial Outline</div>
+                <p><strong>Title: Proving Our First Theorem in Lean 4</strong></p>
+                <div class="timeline">
+                    <div class="timeline-step">
+                        <div class="step-number">I</div>
+                        <div class="step-content">
+                            <div class="step-title">The Proof State Concept (0:00 - 3:00)</div>
+                            <p>Explain the "Goal panel" in VS Code. The top shows what variables we have (hypotheses) and the bottom shows the target statement we want to prove (the goal).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">II</div>
+                        <div class="step-content">
+                            <div class="step-title">The Rewrite Tactic (3:00 - 7:00)</div>
+                            <p>Demonstrate using `rw` to substitute terms in an equation using a known axiom. Show how `rw [add_comm]` changes `m + n` to `n + m` live.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">III</div>
+                        <div class="step-content">
+                            <div class="step-title">Reflexivity (7:00 - 10:00)</div>
+                            <p>Explain `rfl` (Reflexivity). In Lean, if the left side of an equality is definitionally identical to the right side (like `x = x`), `rfl` closes the proof. We see the magical "goals accomplished" message.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Simulator -->
+        <div id="simulator" class="page">
+            <header>
+                <h1>Interactive Lean 4 IDE Simulator</h1>
+                <div class="subtitle">Experience real-time interactive theorem proving without compiling</div>
+            </header>
+
+            <div class="alert alert-success">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div>
+                    <strong>Interactive Proof!</strong> The simulator below replicates the exact experience of using Lean 4 in Visual Studio Code. Click the tactic buttons at the bottom to write the proof line-by-line and watch the "Proof State" update dynamically.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Theorem: Addition is Commutative (m + n = n + m)</div>
+                <p>We want to prove that for any two natural numbers $m$ and $n$, adding $m + n$ yields the exact same result as $n + m$.</p>
+                
+                <div class="simulator-container">
+                    <!-- Left: Source Code -->
+                    <div class="sim-panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background-color:#ff5f56;"></span>
+                                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background-color:#ffbd2e;"></span>
+                                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background-color:#27c93f;"></span>
+                                <span style="margin-left: 8px;">Proof_Simulator.lean</span>
+                            </div>
+                        </div>
+                        <div class="editor-content" id="editorCode" contenteditable="true" spellcheck="false" style="outline: none; white-space: pre-wrap;">theorem add_commutative (m n : Nat) : m + n = n + m := by
+  sorry</div>
+                    </div>
+
+                    <!-- Right: Infoview (Proof State) -->
+                    <div class="sim-panel">
+                        <div class="panel-header">
+                            <div class="panel-title">Lean Infoview 💡</div>
+                            <span style="color:#10b981; font-weight:600;">Active</span>
+                        </div>
+                        <div class="infoview-content" id="infoviewState">
+                            <div class="goal-header">1 goal</div>
+                            m n : Nat<br>
+                            <span class="goal-turnstile">⊢</span> m + n = n + m
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-buttons">
+                    <button id="btnVerify" onclick="verifyProof()">Verify Proof Live ⚡</button>
+                    <button class="reset-btn" onclick="resetSimulator()">Reset Code</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 5: Tactic Guide -->
+        <div id="tactics" class="page">
+            <header>
+                <h1>Interactive Tactic Cheat Sheet</h1>
+                <div class="subtitle">Quick reference cards for core mathematical proof steps</div>
+            </header>
+
+            <div class="tactic-grid">
+                <div class="tactic-card">
+                    <div class="tactic-name">rfl</div>
+                    <p><strong>Reflexivity</strong>. Used to prove equalities where both sides are identical or compute to the same value (e.g., <code>x = x</code> or <code>2 + 2 = 4</code>).</p>
+                </div>
+                <div class="tactic-card">
+                    <div class="tactic-name">rw [rule]</div>
+                    <p><strong>Rewrite</strong>. Substitutes a term in your target goal using a known mathematical equality or established theorem.</p>
+                </div>
+                <div class="tactic-card">
+                    <div class="tactic-name">intro h</div>
+                    <p><strong>Introduction</strong>. Moves the premise of an implication or a quantifier (e.g. "Assume P") into your active hypotheses list with the name <code>h</code>.</p>
+                </div>
+                <div class="tactic-card">
+                    <div class="tactic-name">apply theorem</div>
+                    <p><strong>Backward Reasoning</strong>. Matches your target goal with the conclusion of a theorem, reducing your goal to proving the theorem's premises.</p>
+                </div>
+                <div class="tactic-card">
+                    <div class="tactic-name">induction n</div>
+                    <p><strong>Mathematical Induction</strong>. Splits your goal into a base case (e.g. <code>zero</code>) and an inductive step (e.g. <code>succ n</code>) with an inductive hypothesis.</p>
+                </div>
+                <div class="tactic-card">
+                    <div class="tactic-name">ring</div>
+                    <p><strong>Ring Solver</strong>. Automatically proves algebraic equalities in commutative rings (like addition and multiplication of reals, ints, or rationals).</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Link External Script -->
+    <script src="../js/script.js" defer></script>
+</body>
+</html>

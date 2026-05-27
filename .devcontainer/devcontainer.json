@@ -1,0 +1,29 @@
+{
+    "name": "∀-course-UG Sandbox",
+    "dockerFile": "Dockerfile",
+    
+    // Configure path bindings and features
+    "customizations": {
+        "vscode": {
+            // Automatically install essential extensions in the container
+            "extensions": [
+                "leanprover.lean4",
+                "ms-ceintl.vscode-language-pack-en"
+            ],
+            // Custom settings for the containerized VS Code
+            "settings": {
+                "lean4.toolchainPath": "/home/vscode/.elan/bin",
+                "terminal.integrated.defaultProfile.linux": "bash"
+            }
+        }
+    },
+
+    // Map container ports (1812 for Lean 4 HTTP Backend Server, 5500 for Live Server preview if used)
+    "forwardPorts": [1812, 5500],
+
+    // Build/Install everything as soon as the container is instantiated
+    "postCreateCommand": "lake build",
+
+    // Run container as the non-root 'vscode' user
+    "remoteUser": "vscode"
+}

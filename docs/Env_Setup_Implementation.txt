@@ -1,0 +1,47 @@
+# Lean 4 Learning Environment Setup
+
+This plan outlines the steps to set up the Lean 4 theorem prover and create initial educational modules for students to use as learning tools.
+
+## Proposed Changes
+
+We will perform the following steps to get you up and running with Lean:
+
+### 1. Environment Setup (Lean 4 Installation)
+
+- **Elan Installation**: Lean is managed by `elan` (similar to `rustup` for Rust). We will download and run the official `elan-init.ps1` PowerShell script to install `elan`, `lean`, and `lake` (Lean's build system).
+- The installation will be automated via your terminal.
+
+### 2. Project Initialization
+
+- We will initialize a new Lean project inside the `c:\Users\Asus\LeanLearning` directory using `lake init LeanLearning`.
+- This will set up the necessary boilerplate, including a `lakefile.lean` which is used to manage dependencies (like `mathlib` if you need it later).
+
+### 3. Educational Modules Creation
+
+We will create a structured set of initial modules that students can use to learn Lean. These will be populated with basic proofs, comments, and exercises (indicated by `sorry` - a Lean keyword that acts as a placeholder for unfinished proofs).
+
+#### [NEW] Intro.lean
+A basic introduction file that covers syntax, function definitions, and basic evaluation.
+
+#### [NEW] Logic.lean
+A module introducing basic propositional logic (And, Or, Not, Implication) with simple theorems and exercises for students to complete.
+
+#### [NEW] Arithmetic.lean
+A module containing basic proofs over natural numbers, demonstrating induction and arithmetic properties.
+
+## User Review Required
+
+> [!IMPORTANT]
+> The Lean installation process will modify your system `PATH` to include `elan` and `lake`. 
+> Also, to get the most out of Lean, it is highly recommended to install the official **Lean 4** extension in VS Code.
+
+## Open Questions
+
+1. Are there any specific mathematical or programming topics you want these initial student modules to focus on? (e.g., set theory, abstract algebra, or just basic programming).
+2. Do you want to include Lean's standard math library (`mathlib`) in this project from the start, or stick to plain Lean 4 basics first? (Mathlib is heavy but very useful for math proofs).
+
+## Verification Plan
+
+- Run `lean --version` to ensure it was successfully installed.
+- Run `lake build` in the `LeanLearning` directory to ensure the project compiles without errors.
+- Ensure the student modules are properly imported in the main file so they are type-checked by the Lean compiler.

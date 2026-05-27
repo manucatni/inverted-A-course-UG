@@ -1,0 +1,16 @@
+name = "forall_course"
+version = "0.1.0"
+defaultTargets = ["ForallCourse", "lean_server"]
+
+[[lean_lib]]
+name = "ForallCourse"
+
+[[lean_exe]]
+name = "lean_server"
+root = "src.Server"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.30.0"
+
