@@ -20,6 +20,19 @@
 
     // Map container ports (1812 for Lean 4 HTTP Backend Server, 5500 for Live Server preview if used)
     "forwardPorts": [1812, 5500],
+    
+    // Automatically make ports public to prevent CORS/authentication blocks
+    "portsAttributes": {
+        "1812": {
+            "label": "Lean Backend Server",
+            "visibility": "public"
+        },
+        "5500": {
+            "label": "Web Portal",
+            "visibility": "public",
+            "onAutoForward": "openBrowser"
+        }
+    },
 
     // Build/Install everything as soon as the container is instantiated
     "postCreateCommand": "lake exe cache get && lake build",
