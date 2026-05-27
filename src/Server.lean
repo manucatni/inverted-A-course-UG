@@ -47,14 +47,18 @@ def verifyProofInLean (code : String) : IO String := do
   
   IO.println s!"Compiler output:\n{combinedOutput}"
   
+  -- Escape JSON quotes and backslashes
+  let escapedOutput := combinedOutput.replace "\\" "\\\\" |>.replace "\"" "\\\"" |>.replace "\n" "\\n"
+
   -- Build the custom JSON response based on compiler diagnostics
-  if out.exitCode == 0 && combinedOutput.isEmpty then
-    return "{\"status\":\"success\",\"message\":\"Goals accomplished! Your proof is mathematically complete and verified.\"}"
-  else if combinedOutput.contains "uses `sorry`" || combinedOutput.contains "uses 'sorry'" then
-    return s!"\{\"status\":\"error\",\"error\":\"Proof is incomplete! It contains a 'sorry' placeholder: \\n{combinedOutput}\"}"
+  if combinedOutput.contains "uses `sorry`" || combinedOutput.contains "uses 'sorry'" then
+    return s!"\{\"status\":\"error\",\"error\":\"Proof is incomplete! It contains a 'sorry' placeholder: \\n{escapedOutput}\"}"
+  else if out.exitCode == 0 then
+    if combinedOutput.isEmpty then
+      return "{\"status\":\"success\",\"message\":\"Goals accomplished! Your proof is mathematically complete and verified.\"}"
+    else
+      return s!"\{\"status\":\"success\",\"message\":\"{escapedOutput}\"}"
   else
-    -- Escape JSON quotes and backslashes
-    let escapedOutput := combinedOutput.replace "\\" "\\\\" |>.replace "\"" "\\\"" |>.replace "\n" "\\n"
     return s!"\{\"status\":\"error\",\"error\":\"{escapedOutput}\"}"
 
 -- Recursive accept loop
