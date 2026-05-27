@@ -75,10 +75,11 @@ partial def acceptLoop (server : Socket.Server) : IO Unit := do
     -- Debug write the raw request string to file to see its layout
     IO.FS.writeFile "RequestDebug.log" requestStr
     
-    let codeBody := getHttpBody requestStr
-    
-    -- Compile and verify the Lean code
-    let jsonBody ← verifyProofInLean codeBody
+    let isOptions := requestStr.startsWith "OPTIONS"
+    let jsonBody ← if isOptions then
+      pure ""
+    else
+      verifyProofInLean (getHttpBody requestStr)
     
     -- Standard HTTP CORS headers to allow browser requests from portal
     let response := s!"HTTP/1.1 200 OK\r\n" ++
@@ -90,8 +91,12 @@ partial def acceptLoop (server : Socket.Server) : IO Unit := do
                     "Connection: close\r\n\r\n" ++
                     jsonBody
     
-    (client.send response.toUTF8).block
-    (client.shutdown).block
+    try
+      (client.send response.toUTF8).block
+      (client.shutdown).block
+    catch e =>
+      IO.println s!"Warning: Could not send response or shutdown socket: {e}"
+      
     IO.println "Closed client connection."
     
   acceptLoop server
