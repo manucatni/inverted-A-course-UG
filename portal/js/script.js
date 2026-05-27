@@ -33,7 +33,7 @@ async function verifyProof() {
     const infoview = document.getElementById('infoviewState');
     const btnVerify = document.getElementById('btnVerify');
     
-    const code = editor.innerText.trim();
+    const code = editor.innerText.replace(/\u00A0/g, " ").trim();
     if (!code) {
         infoview.innerHTML = `<span style="color:#f43f5e;">Error: Code area is empty.</span>`;
         return;
