@@ -22,7 +22,7 @@
     "forwardPorts": [1812, 5500],
 
     // Build/Install everything as soon as the container is instantiated
-    "postCreateCommand": "lake build",
+    "postCreateCommand": "lake exe cache get && lake build",
 
     // Run container as the non-root 'vscode' user
     "remoteUser": "vscode"
